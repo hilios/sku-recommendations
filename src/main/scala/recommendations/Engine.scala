@@ -29,8 +29,6 @@ object Engine {
 
   /**
     * Parses a json string and returns an recommendation engine
-    * @param jsonStr
-    * @return
     */
   def build(jsonStr: String) = {
     implicit val formats = org.json4s.DefaultFormats

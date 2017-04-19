@@ -9,14 +9,13 @@ case class Attributes(a: Option[String], b: Option[String], c: Option[String], d
 
   /**
     * Returns the attributes as an sequence
-    * @return
     */
   def toSeq = Seq(a, b, c, d, e, f, g, h, i, j)
 
   /**
     * Calculates the similarity between this and any other Attributes.
     * @param attrs the attributes class to compare with
-    * @return a similarity score
+    * @return the similarity score
     */
   def rank(attrs: Attributes): Double = {
     this.toSeq.zip(attrs.toSeq).zipWithIndex
