@@ -11,7 +11,7 @@ object Main extends App {
     * @param engine the recommendation engine
     */
   @tailrec def ask(engine: Engine): Unit = {
-    val sku = StdIn.readLine("Type the SKU: ")
+    val sku = StdIn.readLine("Type a SKU: ")
     val recommendations = engine.request(sku, 10)
 
     if (recommendations.nonEmpty) {
