@@ -4,7 +4,7 @@ A simple recommendation engine based in a weighted attributes set.
 
 #### Running
 
-Given an structured JSON execute the `jar` in your environment, and then type the SKU you would like to fetch the recommendations: 
+Execute the `jar` in your environment passing the path of the input JSON data as argument, then type the SKU you would like to fetch the recommendations: 
 
 ```shell
 $ java -jar home24-recommendations.jar path/to/data.json
@@ -35,7 +35,7 @@ From the source code just execute from SBT tool:
 $ sbt "run path/to/data.json"
 ```
 
-### Ranking strategy
+## Ranking strategy
 
 The algorithm scores the SKU using the following formula: 
 
@@ -44,7 +44,7 @@ The algorithm scores the SKU using the following formula:
 
 The first attributes (a, b, c, etc.) has heavier weight in the comparision to the latter, but never the same weight as the attribute match, because the survival function is an asymptote curve with maximum cumulative sum of one.
 
-### Design considerations
+## Design considerations
 
 This code aims to KISS and use as few external dependencies as possibles, after parsing it holds all data in memory allowing fast access to the request function. 
 
