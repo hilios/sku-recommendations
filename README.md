@@ -4,7 +4,7 @@ A simple recommendation engine based in a weighted attributes set.
 
 #### Running
 
-Execute the `jar` in your environment passing the path of the input JSON data as argument, then type the SKU you would like to fetch the recommendations: 
+Execute the `jar` in your environment passing the path of the input JSON data as argument, then type the SKU you would like to fetch recommendations: 
 
 ```shell
 $ java -jar recommendations.jar ./test-data.json
@@ -29,10 +29,12 @@ Type a SKU: sku-5
 Type a SKU:
 ```
 
-From the source code just execute from SBT tool:
+#### Development
+
+From the source code root execute with SBT tool:
 
 ```shell
-$ sbt "run path/to/data.json"
+$ sbt "run ./src/main/resources/test-data.json"
 ```
 
 ## Ranking strategy
