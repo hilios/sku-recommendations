@@ -7,7 +7,7 @@ A simple recommendation engine based in a weighted attributes set.
 Execute the `jar` in your environment passing the path of the input JSON data as argument, then type the SKU you would like to fetch the recommendations: 
 
 ```shell
-$ java -jar home24-recommendations.jar path/to/data.json
+$ java -jar recommendations.jar ./test-data.json
 Press Ctrl+C to exit
 Type a SKU: sku-5
 
@@ -46,9 +46,9 @@ The first attributes (a, b, c, etc.) has heavier weight in the comparision to th
 
 ## Design considerations
 
-This code aims to KISS and use as few external dependencies as possibles, after parsing it holds all data in memory allowing fast access to the request function. 
+This code aims to KISS and use as few external dependencies as possibles, after parsing it holds all data in memory allowing fast access to the request function given the test data is small (< 500Mb). 
 
-There are some drawbacks caused by this approach that could be optimized in future versions:
+There are some drawbacks caused by this approach that could be optimized in future versions if the input grows:
 
 - Parse json as a stream;
 - Use a columnar fast access pre-processed file (ie: Parquet);

@@ -11,4 +11,6 @@ libraryDependencies ++= Seq(
 
 mainClass := Some("recommendations.Main")
 
-assemblyJarName in assembly := "home24-recommendations.jar"
+assemblyJarName in assembly := "recommendations.jar"
+
+javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled")
