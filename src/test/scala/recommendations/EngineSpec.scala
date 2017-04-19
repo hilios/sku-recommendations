@@ -2,8 +2,18 @@ package recommendations
 
 import org.scalatest.{FlatSpec, Matchers}
 
+import scala.util.{Failure, Success}
+
 class EngineSpec extends FlatSpec with Matchers {
-  "Engine" should "weight the count of attribute matches more than its position" in {
+  ".build" should "return a new instance of the Engine wraped in a Try" in {
+    Engine.build("""{}""") shouldBe Success(Engine(Map.empty))
+  }
+
+  it should "handle json parse failures" in {
+    Engine.build("""{not and valid json]""") shouldBe a[Failure[_]]
+  }
+
+  "#request" should "weight the count of attribute matches more than its position" in {
     val json =
       """
         {
@@ -13,7 +23,7 @@ class EngineSpec extends FlatSpec with Matchers {
         }
       """
 
-    Engine(json).get("sku-1", 10) shouldBe Map("sku-2" -> 2.375, "sku-3" -> 1.5)
+    Engine.build(json).get.request("sku-1", 10) shouldBe Seq("sku-2" -> 2.375, "sku-3" -> 1.5)
   }
 
   it should "weight the attributes position if matches are the same" in {
@@ -26,6 +36,6 @@ class EngineSpec extends FlatSpec with Matchers {
         }
       """
 
-    Engine(json).get("sku-1", 10) shouldBe Map("sku-2" -> 1.5, "sku-3" -> 1.25)
+    Engine.build(json).get.request("sku-1", 10) shouldBe Seq("sku-2" -> 1.5, "sku-3" -> 1.25)
   }
 }
