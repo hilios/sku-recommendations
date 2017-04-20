@@ -4,7 +4,7 @@ A simple recommendation engine based in a weighted attributes set.
 
 #### Running
 
-Execute the `jar` in your environment passing the path of the input JSON data as argument, then type the SKU you would like to fetch recommendations: 
+Execute the `jar` in your environment passing the path of the input JSON data as argument (using Oracle Java 8), then type the SKU you would like to fetch recommendations: 
 
 ```shell
 $ java -jar recommendations.jar ./test-data.json
@@ -37,6 +37,23 @@ From the source code root execute with SBT tool:
 $ sbt "run ./src/main/resources/test-data.json"
 ```
 
+To run test just type:
+
+```shell
+$ sbt test
+```
+
+To build the `jar` file execute:
+
+```shell
+$ sbt assembly
+# ...
+[info] SHA-1: 083d674421122930bc4a2662877b63e8d6cae07e
+[info] Packaging home24-recommendations/target/scala-2.12/recommendations.jar ...
+[info] Done packaging.
+[success] Total time: 39 s, completed Apr 20, 2017 9:08:06 AM
+```
+
 ## Ranking strategy
 
 The algorithm scores the SKU using the following formula: 
@@ -50,7 +67,7 @@ The first attributes (a, b, c, etc.) has heavier weight in the comparision to th
 
 This code aims to KISS and use as few external dependencies as possibles, after parsing it holds all data in memory allowing fast access to the request function given the test data is small (< 500Mb). 
 
-There are some drawbacks caused by this approach that could be optimized in future versions if the input grows:
+There are some drawbacks caused by this approach that could be optimized in future versions if the input grows large:
 
 - Parse json as a stream;
 - Use a columnar fast access pre-processed file (ie: Parquet);
